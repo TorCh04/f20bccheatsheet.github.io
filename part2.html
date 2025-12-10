@@ -2,136 +2,96 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Neural Networks and Deep Learning</title>
+    <title>Evolutionary Algorithms and Swarm Intelligence</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f8f9fa;
-            color: #222;
-            margin: 2em;
-        }
-        h1, h2, h3 {
-            color: #2a7ae2;
-        }
-        .section {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            padding: 1.5em;
-            margin-bottom: 2em;
-        }
-        ul {
-            margin-left: 1.5em;
-        }
-        code, .math {
-            background: #eef;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: "Consolas", "Monaco", monospace;
-        }
-        .note {
-            color: #555;
-            font-size: 0.95em;
-        }
-        .sublist {
-            margin-left: 1.5em;
-        }
-    </style>
-    <!-- Optional: MathJax for LaTeX rendering -->
+     <link rel="stylesheet" href="styles.css">
+    <!-- MathJax for LaTeX rendering -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
     </script>
 </head>
 <body>
-    <h1>Part I: Neural Networks and Deep Learning</h1>
-
+    <h1>Part II: Evolutionary Algorithms and Swarm Intelligence</h1>
+<div class="top-actions">
+        <a class="home-btn" href="index.html" aria-label="Go to home">Home</a>
+    </div>
     <div class="section">
-        <h2>1.1 Logistic Regression</h2>
+        <h2>2.1 Evolutionary Algorithms (EAs)</h2>
         <ul>
             <li>
-                <strong>Linear Classifier:</strong> Logistic Regression is considered a <strong>linear classifier</strong> because it relies on a <strong>linear discriminant function</strong> to partition the feature space (i.e., separate classes using a straight line or hyperplane).
+                <strong>Definition:</strong> EAs are <strong>metaheuristics</strong> that operate on a <strong>population of potential solutions</strong>. They are a type of guided random search used for <strong>optimisation problems</strong>.
             </li>
             <li>
-                <strong>Regression vs Classification:</strong> The problem determines the goal:
-                <ul class="sublist">
-                    <li>
-                        <strong>Regression</strong> problems aim to predict a real output value (e.g., housing cost), typically finding a linear model <span class="math">\(\hat{y}=wx+b\)</span>.
-                    </li>
-                    <li>
-                        <strong>Classification</strong> problems aim for a categorical answer (e.g., cat or dog). Logistic Regression calculates the <strong>conditional probability</strong> <span class="math">\(\hat{Y} = P(y=1|x)\)</span>, which must fall between 0 and 1. It typically uses the <strong>Cross Entropy / Log Loss function</strong> to calculate the cost.
-                    </li>
-                </ul>
+                <strong>Core Principles:</strong> EAs apply the biological principles of <strong>Inheritance, Mutation, Selection, and Crossover/recombination</strong>.
             </li>
             <li>
-                <strong>Forward Pass and Backward Pass:</strong>
-                <ul class="sublist">
-                    <li>
-                        <strong>Forward Pass:</strong> The input vector <span class="math">\(X\)</span> propagates forward to calculate the weighted sum <span class="math">\(z = W^T X + b\)</span>, and then the predictor <span class="math">\(\hat{Y} = \sigma(z)\)</span> is calculated by applying the sigmoid function.
-                    </li>
-                    <li>
-                        <strong>Backward Pass:</strong> This uses the chain rule to calculate the <strong>derivatives (gradients)</strong>, such as <span class="math">\(dz=a-y\)</span>, which determine how much each weight and bias contributed to the final error. These gradients are used to update the parameters.
-                    </li>
-                </ul>
+                <strong>Niche:</strong> They are particularly suitable for <strong>poorly-understood problems</strong>—those that are non-linear, discontinuous, or feature multiple optima—where no other method works well.
             </li>
             <li>
-                <strong>Learning Rate (<span class="math">\(\alpha\)</span>):</strong> This is a <strong>hyperparameter</strong> that <strong>controls the size of the step</strong> taken in each iteration during gradient descent. A low value risks stagnation, while a high value risks oscillations or divergence (no learning).
+                <strong>Generic Framework:</strong> The algorithm starts with generating an <strong>initial population</strong> of random solutions and evaluating their fitness. This is followed by a loop of <strong>Selection</strong> (choosing parents), <strong>Variation</strong> (applying genetic operators), and <strong>Population Update</strong> (deciding which incumbents to replace with children).
             </li>
             <li>
-                <strong>Bias (<span class="math">\(w_0\)</span>):</strong> The bias is an essential parameter, often viewed as another weight connected to an input that is <strong>constantly "on"</strong> (value of 1). The function of the bias is to <strong>allow shifting the entire activation curve</strong> of the neuron, adjusting the decision threshold regardless of the input features.
+                <strong>Fitness Function:</strong> A function <span class="math">\(f(s)\)</span> that assigns a <strong>fitness score</strong> to any candidate solution <span class="math">\(s\)</span>. The goal of the EA is to <strong>optimise this value</strong>.
+            </li>
+            <li>
+                <strong>Encoding:</strong> The <strong>encoding</strong> or <strong>representation</strong> is the data structure used to specify a solution (e.g., a string of bits, a tree, a list of real numbers). The choice of encoding influences the possible genetic operators and the size of the search space.
             </li>
         </ul>
     </div>
 
     <div class="section">
-        <h2>1.2 Multilayer Perceptrons (MLP)</h2>
+        <h2>2.2 EA Details and Selection</h2>
         <ul>
             <li>
-                <strong>Architecture:</strong> MLPs use a <strong>fully connected feedforward architecture</strong>, meaning every node is connected to every node in adjacent layers.
+                <strong>Selection:</strong> The method used to choose parents from the population, ensuring that <strong>fitter individuals are more likely to be selected</strong>. Selection represents the strategy for deciding which areas of the search space to focus on.
             </li>
             <li>
-                <strong>Hyperparameters:</strong> These variables must be set before training begins and determine the network's structure, including <strong>the number of layers</strong>, <strong>the number of nodes in the hidden layers</strong>, and the <strong>activation functions</strong>.
+                <strong>Selection Pressure:</strong> This is the <strong>level of prioritisation of fitter individuals</strong>. It is required to direct the EA towards an optimum.
+                <ul class="sublist">
+                    <li><strong>Too high pressure</strong> reduces <strong>genetic diversity</strong>, leading to the risk of <strong>premature convergence to a local optimum</strong>.</li>
+                    <li><strong>Too low pressure</strong> means there is effectively <strong>no evolutionary progress</strong> and the EA may not converge in a reasonable time.</li>
+                </ul>
             </li>
             <li>
-                <strong>Universal Approximation Theory:</strong> This theorem states that a feed-forward network with even a <strong>single hidden layer</strong> containing a finite number of neurons <strong>can approximate any continuous function</strong>.
-            </li>
-            <li>
-                <strong>Activation Functions:</strong> These must be <strong>continuous and differentiable</strong> for backpropagation to work. They should be <strong>monotonic</strong> (entirely non-increasing or non-decreasing) because non-monotonicity would lead to <strong>chaotic behaviour during training</strong>, as increasing a weight might paradoxically cause the neuron to have less influence.
+                <strong>Selection Methods:</strong>
                 <ul class="sublist">
                     <li>
-                        <strong>Sigmoid/Tanh:</strong> These are sigmoidal (S-shaped) and commonly used. Tanh has a derivative that is generally larger than sigmoid's, leading to faster training.
+                        <strong>Roulette Wheel Selection</strong> (Fitness Proportionate Selection): The probability of selecting an individual is directly proportional to its fitness.
                     </li>
                     <li>
-                        <strong>Linear Activation:</strong> If a network uses linear activation functions in all hidden layers, the network can be reduced to a <strong>single-layer ANN</strong>, restricting the model to only linear functions.
+                        <strong>Tournament Selection:</strong> Choose <span class="math">\(t\)</span> random individuals from the population, and the best of these <span class="math">\(t\)</span> individuals is returned. This method is highly <strong>tunable</strong> and avoids problems caused by superfit solutions.
                     </li>
                 </ul>
             </li>
             <li>
-                <strong>Vanishing Gradient Problem:</strong> This occurs primarily with sigmoid/tanh in <strong>deep neural networks</strong>. The error signal is multiplied by the small derivative of the activation function at each step, causing the update gradient for the "front" layers to <strong>decrease exponentially</strong>. This dramatically <strong>slows down the learning process</strong> for those layers.
+                <strong>Stopping Criteria:</strong> The evolution is typically stopped when criteria such as the <strong>maximum number of generations</strong>, the maximum number of generations <strong>without improvement</strong>, or the maximum number of improvements are met.
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>2.3 Swarm Intelligence</h2>
+        <ul>
+            <li>
+                <strong>General Properties:</strong> Swarm behaviour exhibits <strong>emergence</strong> (complex behaviour from simple interactions), <strong>distributed behaviour</strong> (making it <strong>robust to failure</strong>), and individuals generally lack awareness of the bigger picture (only observing neighbours).
             </li>
             <li>
-                <strong>Bias in MLP:</strong> The bias allows <strong>shifting the entire activation curve</strong>, which is essential for adjusting the decision boundary. Unlike weights, the bias <strong>has no problems of symmetry</strong> and can safely be initialised to zero, though large initial values should be avoided due to the risk of vanishing gradients.
+                <strong>Boids:</strong> A model demonstrating realistic flocking behaviour based on three simple rules:
+                <ol class="sublist">
+                    <li><strong>Separation:</strong> Avoid getting too close to local flock mates.</li>
+                    <li><strong>Alignment:</strong> Match velocity to the average velocity of local flock mates.</li>
+                    <li><strong>Cohesion:</strong> Adjust velocity toward the centroid of the flock mates.</li>
+                </ol>
             </li>
             <li>
-                <strong>Backpropagation (BP):</strong>
+                <strong>Ant Colony Optimisation (ACO):</strong>
                 <ul class="sublist">
                     <li>
-                        <strong>BP Procedure:</strong> An optimisation method based on gradient descent. It involves: <strong>Forward propagation</strong> (calculating the predictor <span class="math">\(\hat{Y}\)</span>), <strong>computing the loss</strong>, <strong>Back propagation</strong> (computing derivatives), and <strong>updating learning rules</strong>.
+                        <strong>Stigmergy:</strong> This is the core concept where information is <strong>indirectly shared through changes made to an environment</strong> (e.g., pheromone trails).
                     </li>
                     <li>
-                        <strong>Random Initialisation:</strong> Weights must be <strong>randomly initialised</strong> to prevent symmetry, otherwise, all hidden units would compute the same function and receive identical updates.
-                    </li>
-                    <li>
-                        <strong>Learning Rate:</strong> As noted above, the learning rate <span class="math">\(\alpha\)</span> determines the step size and must be carefully tuned to avoid stagnation or divergence.
-                    </li>
-                    <li>
-                        <strong>Real Example of BP:</strong> The process involves calculating the local gradient (<span class="math">\(\delta\)</span>) for each neuron (starting at the output) and using the learning rule <span class="math">\(w_{new} = w_{old} - \alpha \cdot \delta \cdot a\)</span> to adjust weights and biases.
-                        <ul class="sublist">
-                            <li><span class="math">\(\alpha\)</span> (alpha): The <strong>learning rate</strong></li>
-                            <li><span class="math">\(\delta\)</span> (delta): The <strong>local gradient</strong> for the neuron.</li>
-                            <li><span class="math">\(a\)</span>: The <strong>activation</strong> (output value) of the neuron in the <strong>previous layer</strong> (the neuron that feeds into the current weight).</li>
-                        </ul>
+                        <strong>Mechanism:</strong> ACO applies this idea to combinatorial optimisation problems (like the <strong>Travelling Salesperson Problem</strong>). Virtual ants build trails in a graph, choosing edges based on existing <strong>pheromone concentrations</strong>. The best trails receive increased pheromone deposition (often inversely proportional to length), while <strong>pheromone evaporation</strong> causes sub-optimal trails to gradually be forgotten.
                     </li>
                 </ul>
             </li>
@@ -139,40 +99,27 @@
     </div>
 
     <div class="section">
-        <h2>1.3 Convolutional Neural Networks (CNN)</h2>
+        <h2>2.4 Particle Swarm Optimisation (PSO)</h2>
         <ul>
             <li>
-                <strong>Convolution Operation:</strong> This is the core mechanism where a <strong>filter</strong> (or <strong>kernel</strong>) is <strong>slid over the input</strong> (e.g., image) to produce a <strong>feature map</strong>. The filter performs a matrix multiplication (and summation) at every location. CNNs are superior because they <strong>learn these filters directly from the data</strong>. For colour images, the filter size must match the number of input channels (e.g., a <span class="math">\(3 \times 3\)</span> filter on an RGB image is <span class="math">\(3 \times 3 \times 3\)</span>).
+                <strong>Difference from EAs:</strong> PSO is distinct from EAs because each search point (particle) has an explicit <strong>velocity</strong> vector in addition to its position vector, whereas an EA search point does not. Particles are neither created nor destroyed, unlike in EAs.
             </li>
             <li>
-                <strong>Pooling (Max-Pooling):</strong> Pooling layers reduce the feature map size by combining features into higher-level representations. <strong>Max-pooling</strong> achieves this by taking the maximum value within a sliding window. This non-overlapping subsampling grants higher-layer representations <strong>translational invariance</strong> (recognising a pattern regardless of its exact location) and reduces computational cost.
+                <strong>Particle State:</strong> Each particle maintains a <strong>position</strong> (list of numbers), a <strong>velocity</strong> (list of numbers), its <strong>personal best position</strong> (<span class="math">\(x^*_i\)</span>), and the <strong>best position seen by its informants</strong> (<span class="math">\(x^+_i\)</span>).
             </li>
             <li>
-                <strong>Hyperparameters:</strong> Key architectural choices include the <strong>number of features/filters</strong>, the <strong>size of the features</strong> (kernel dimension), the <strong>window size and stride</strong> for pooling, and the overall architecture (order of layers).
+                <strong>Velocity Update:</strong> The particle's new velocity is the sum of three components:
+                <ol class="sublist">
+                    <li><strong>Inertia</strong> (<span class="math">\(a \cdot v_i\)</span>): Keeps the particle moving in the same general direction.</li>
+                    <li><strong>Cognitive Component</strong> (<span class="math">\(b \cdot (x^*_{i} - x_i)\)</span>): Tweaks velocity toward the particle's <strong>personal best position</strong>.</li>
+                    <li><strong>Social Component</strong> (<span class="math">\(c \cdot (x^+_i - x_i)\)</span>): Tweaks velocity toward the best position seen by its <strong>informants</strong>.</li>
+                </ol>
             </li>
             <li>
-                <strong>ReLU Activation Function:</strong> <strong>Rectified Linear Units (ReLU)</strong> are typically applied after convolution. They introduce non-linearity by <strong>changing all negative values to zero</strong>.
+                <strong>Informants:</strong> Informants are other particles whose best search experiences guide a particle. Using overlapping groups of informants causes knowledge to <strong>percolate gradually</strong>, which <strong>reduces the likelihood of premature convergence</strong> compared to relying on a global best position.
             </li>
             <li>
-                <strong>Backpropagation:</strong> Like MLPs, CNNs are trained using <strong>Backpropagation</strong> to adjust both the features in the convolutional layers (the filters) and the voting weights in the fully connected layers.
-            </li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2>1.4 Deep Learning: Others</h2>
-        <ul>
-            <li>
-                <strong>Deep Learning Architectures:</strong> Deep learning is <strong>not all about deep neural networks</strong>. Alternative architectures have been proposed, such as <strong>Deep Forest</strong> and <strong>Deep SVMs</strong>.
-            </li>
-            <li>
-                <strong>Unsupervised Learning:</strong> Deep Learning can achieve unsupervised tasks. A primary example is the <strong>Deep Autoencoder</strong>.
-            </li>
-            <li>
-                <strong>Deep Autoencoder:</strong> This is an unsupervised deterministic mapping algorithm that applies <strong>backpropagation</strong>. It learns an approximation to the identity function by minimising the <strong>reconstruction error</strong> between the input and the output. The goal is to force the model to learn the most robust features by reducing dimensionality.
-            </li>
-            <li>
-                <strong>Limitations:</strong> Deep Learning is particularly <strong>good at solving pattern recognition problems</strong>.
+                <strong>Hyperparameters:</strong> Key hyperparameters include the <strong>swarm size</strong>, the <strong>inertia weight</strong> (<span class="math">\(a\)</span>), and the weights for the cognitive (<span class="math">\(b\)</span>) and social (<span class="math">\(c\)</span>) components, as well as the number of iterations.
             </li>
         </ul>
     </div>
