@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Neural Networks and Deep Learning: Logistic Regression</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Part I: Neural Networks and Deep Learning</h1>
+    <div class="section">
+        <h2>1.1 Logistic Regression</h2>
+        <ul>
+            <li>
+                <strong>Linear Classifier:</strong> Logistic Regression is considered a <strong>linear classifier</strong> because it relies on a <strong>linear discriminant function</strong> to partition the feature space (i.e., separate classes using a straight line or hyperplane).
+            </li>
+            <li>
+                <strong>Regression vs Classification:</strong> The problem determines the goal:
+                <ul>
+                    <li>
+                        <strong>Regression</strong> problems aim to predict a real output value (e.g., housing cost), typically finding a linear model 
+                        <span class="math">&hat;y; = wx + b</span>.
+                    </li>
+                    <li>
+                        <strong>Classification</strong> problems aim for a categorical answer (e.g., cat or dog). Logistic Regression calculates the <strong>conditional probability</strong> 
+                        <span class="math">&hat;Y; = P(y=1|x)</span>, which must fall between 0 and 1. It typically uses the <strong>Cross Entropy / Log Loss function</strong> to calculate the cost.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <strong>Forward Pass and Backward Pass:</strong>
+                <ul>
+                    <li>
+                        <strong>Forward Pass:</strong> The input vector <span class="math">X</span> propagates forward to calculate the weighted sum 
+                        <span class="math">z = W<sup>T</sup>X + b</span>, and then the predictor 
+                        <span class="math">&hat;Y; = &sigma;(z)</span> is calculated by applying the sigmoid function.
+                    </li>
+                    <li>
+                        <strong>Backward Pass:</strong> This uses the chain rule to calculate the <strong>derivatives (gradients)</strong>, such as 
+                        <span class="math">dz = a - y</span>, which determine how much each weight and bias contributed to the final error. These gradients are used to update the parameters.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <strong>Learning Rate (<span class="math">&alpha;</span>):</strong> This is a <strong>hyperparameter</strong> that <strong>controls the size of the step</strong> taken in each iteration during gradient descent. A low value risks stagnation, while a high value risks oscillations or divergence (no learning).
+            </li>
+            <li>
+                <strong>Bias (<span class="math">w<sub>0</sub></span>):</strong> The bias is an essential parameter, often viewed as another weight connected to an input that is <strong>constantly "on"</strong> (value of 1). The function of the bias is to <strong>allow shifting the entire activation curve</strong> of the neuron, adjusting the decision threshold regardless of the input features.
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
