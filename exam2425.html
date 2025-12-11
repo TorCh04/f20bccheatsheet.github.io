@@ -19,10 +19,11 @@
     <div class="section">
         <h2>Section A</h2>
         <div class="answer">
-            <div class="question">(1a) Structure of a Typical Evolutionary Algorithm (EA) and Workflow Diagram</div>
-            <p>
-                A generic Evolutionary Algorithm (EA) is a metaheuristic that operates on a population of potential solutions. The algorithm applies the core principles of evolutionary biology: <strong>Inheritance, Mutation, Selection, and Crossover/Recombination</strong>.
-            </p>
+            <div class="question">1)a)Please explain the structure of a typical evolutionary algorithm,  
+incorporating all standard genetic operators. Draw a diagram to  
+visually represent the workflow of this algorithm (3 marks for  
+algorithm description and 2 marks for drawing the diagram).</strong>.</div>
+     
             <ol>
                 <li><strong>Initialization:</strong> Generate a fixed-size population \(P\) of randomly generated candidate solutions and evaluate the fitness of each one using a fitness function \(f(s)\).</li>
                 <li><strong>Repeat until a termination condition is reached:</strong>
@@ -61,8 +62,8 @@
         <rect x="570" y="60" width="120" height="40" rx="10" fill="#e3eefa" stroke="#2a7ae2" />
         <text x="630" y="85" font-size="15" text-anchor="middle" fill="#2a7ae2">Check Termination</text>
         <!-- Loop arrow (from Check Termination back to Selection) -->
-        <path d="M 690 80 Q 710 100 690 120 Q 370 160 50 120 Q 30 100 50 80" fill="none" stroke="#2a7ae2" stroke-width="2"/>
-        <polygon points="50,80 60,75 60,85" fill="#2a7ae2"/>
+        <path d="M 690 80 Q 710 100 690 120 Q 380 170 160 120 Q 140 100 160 80" fill="none" stroke="#2a7ae2" stroke-width="2"/>
+        <polygon points="160,80 170,75 170,85" fill="#2a7ae2"/>
         <text x="700" y="110" font-size="12" fill="#2a7ae2" transform="rotate(15 700,110)">Repeat Loop</text>
     </svg>
 </div>
