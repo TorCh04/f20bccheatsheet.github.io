@@ -31,6 +31,38 @@
             <li>
                 <strong>Generic Framework:</strong> The algorithm starts with generating an <strong>initial population</strong> of random solutions and evaluating their fitness. This is followed by a loop of <strong>Selection</strong> (choosing parents), <strong>Variation</strong> (applying genetic operators), and <strong>Population Update</strong> (deciding which incumbents to replace with children).
             </li>
+        </ul>
+        <h3>EA Workflow Steps:</h3>
+        <ol>
+            <li>
+                <strong>Initialization</strong><br>
+                - Randomly generate an initial population of candidate solutions (individuals).
+            </li>
+            <li>
+                <strong>Evaluation</strong><br>
+                - Assess the fitness of each individual using a predefined fitness function.
+            </li>
+            <li>
+                <strong>Selection</strong><br>
+                - Select individuals from the current population to become parents, typically favoring those with higher fitness (e.g., roulette wheel, tournament selection).
+            </li>
+            <li>
+                <strong>Crossover (Recombination)</strong><br>
+                - Combine pairs of parents to produce offspring, exchanging genetic material to create diversity.
+            </li>
+            <li>
+                <strong>Mutation</strong><br>
+                - Randomly alter parts of offspring solutions to introduce new genetic structures and maintain diversity.
+            </li>
+            <li>
+                <strong>Replacement</strong><br>
+                - Form the new population by replacing some or all individuals from the previous generation with offspring.
+            </li>
+            <li>
+                <strong>Termination</strong><br>
+                - Repeat steps 2–6 until a stopping criterion is met (e.g., maximum generations, satisfactory fitness).
+            </li>
+        </ol>
             <li>
                 <strong>Fitness Function:</strong> A function <span class="math">\(f(s)\)</span> that assigns a <strong>fitness score</strong> to any candidate solution <span class="math">\(s\)</span>. The goal of the EA is to <strong>optimise this value</strong>.
             </li>
@@ -38,6 +70,7 @@
                 <strong>Encoding:</strong> The <strong>encoding</strong> or <strong>representation</strong> is the data structure used to specify a solution (e.g., a string of bits, a tree, a list of real numbers). The choice of encoding influences the possible genetic operators and the size of the search space.
             </li>
         </ul>
+        <img src="images/EAs.png" alt="Evolutionary Algorithm Workflow Diagram" class="diagram">
     </div>
 
     <div class="section">
