@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Evolutionary Algorithms and Swarm Intelligence</title>
+    <title>Genetic Programming (GP) and Related Systems</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
     <!-- MathJax for LaTeX rendering -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async
@@ -12,8 +12,8 @@
     </script>
 </head>
 <body>
-    <h1>Part II: Evolutionary Algorithms and Swarm Intelligence</h1>
-<div class="top-actions">
+    <h1>Evolutionary Algorithms and Swarm Intelligence</h1>
+    <div class="top-actions">
         <a class="home-btn" href="index.html" aria-label="Go to home">Home</a>
     </div>
     <div class="section">
@@ -63,6 +63,7 @@
                 - Repeat steps 2–6 until a stopping criterion is met (e.g., maximum generations, satisfactory fitness).
             </li>
         </ol>
+        <ul>
             <li>
                 <strong>Fitness Function:</strong> A function <span class="math">\(f(s)\)</span> that assigns a <strong>fitness score</strong> to any candidate solution <span class="math">\(s\)</span>. The goal of the EA is to <strong>optimise this value</strong>.
             </li>
@@ -153,6 +154,123 @@
             </li>
             <li>
                 <strong>Hyperparameters:</strong> Key hyperparameters include the <strong>swarm size</strong>, the <strong>inertia weight</strong> (<span class="math">\(a\)</span>), and the weights for the cognitive (<span class="math">\(b\)</span>) and social (<span class="math">\(c\)</span>) components, as well as the number of iterations.
+            </li>
+        </ul>
+    </div>
+    <h1>Genetic Programming (GP) and Related Systems</h1>
+
+    <div class="section">
+        <h2>3.1 Genetic Programming (GP) Overview</h2>
+        <ul>
+            <li>
+                <strong>Goal:</strong> GP is a form of EA used to <strong>evolve programs</strong> (or executable structures). It is used when the program logic needed to solve a problem is <strong>unknown</strong>.
+            </li>
+            <li>
+                <strong>Representation:</strong> Programs are represented as data structures, such as a <strong>parse tree</strong> (Koza GP) or a <strong>list of grammar transitions</strong> (GE). The representation influences evolvability and the size of the search space.
+            </li>
+            <li>
+                <strong>Koza GP and Trees:</strong> The best-known form uses <strong>parse trees</strong> composed of <strong>functions</strong> (internal nodes) and <strong>terminals</strong> (leaf nodes).
+                <ul class="sublist">
+                    <li>
+                        <strong>Closure:</strong> A fundamental requirement that <strong>all functions must be able to handle any input they may receive</strong> to maintain program validity and avoid runtime errors.
+                    </li>
+                    <li>
+                        <strong>Bloat:</strong> The tendency for programs (especially trees) to <strong>grow large</strong> unnecessarily during evolution, leading to inefficient and difficult-to-interpret programs. Bloat can be controlled by applying <strong>depth constraints</strong> or <strong>parsimony pressure</strong> (penalising size).
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>3.2 Specific GP and Improvement Methods</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Representation</th>
+                    <th>Strengths</th>
+                    <th>Weaknesses</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Koza GP</strong></td>
+                    <td><strong>Parse tree</strong> of functions/terminals</td>
+                    <td>Well known, widely supported.</td>
+                    <td>Does not use real languages, <strong>tends to bloat</strong>.</td>
+                </tr>
+                <tr>
+                    <td><strong>Cartesian GP (CGP)</strong></td>
+                    <td><strong>Graph/grid</strong> of interconnected functions</td>
+                    <td>Supports implicit reuse, <strong>No bloat</strong> (fixed size).</td>
+                    <td>Does not use real languages, fixed grid size.</td>
+                </tr>
+                <tr>
+                    <td><strong>Linear GP</strong></td>
+                    <td><strong>Vector/list of instructions</strong></td>
+                    <td>Supports low-level languages (e.g., Java bytecode), relatively fast.</td>
+                    <td>Doesn't work well with high-level languages.</td>
+                </tr>
+                <tr>
+                    <td><strong>Grammatical Evolution (GE)</strong></td>
+                    <td><strong>Vector/list of grammar transitions</strong> (numbers)</td>
+                    <td>Supports <strong>high-level languages</strong> using a defined grammar; generated programs are guaranteed to be syntactically valid.</td>
+                    <td>Issues with evolvability, limited grammar size.</td>
+                </tr>
+                <tr>
+                    <td><strong>Genetic Improvement (GI)</strong></td>
+                    <td><strong>Patches</strong> (lines of code to insert and delete)</td>
+                    <td>Does not need to evolve everything from scratch, improves existing code.</td>
+                    <td>Needs <strong>unit tests</strong> to maintain correctness.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>3.3 Multi-objective Evolutionary Algorithms (MOEAs)</h2>
+        <ul>
+            <li>
+                <strong>Problem Domain:</strong> MOEAs are necessary for problems that have <strong>multiple, often conflicting, objectives</strong> (e.g., maximising accuracy and minimising complexity).
+            </li>
+            <li>
+                <strong>Dominance:</strong> Used to compare solutions: Solution A <strong>dominates</strong> Solution B if A is better in <strong>at least one objective</strong> and no worse in all others.
+            </li>
+            <li>
+                <strong>Pareto Front/Set:</strong> The set of all <strong>non-dominated solutions</strong> in the search space is the <strong>Pareto Optimal Set</strong>. The <strong>Pareto Optimal Front</strong> is the visualization of this set in the objective space.
+            </li>
+            <li>
+                <strong>Goal:</strong> The aim is to produce a <strong>diverse set of solutions</strong> that represent the best possible trade-offs. The user then selects the final optimal solution from this front.
+            </li>
+            <li>
+                <strong>NSGA-II:</strong> This widely used algorithm (Non-dominated Sorting Genetic Algorithm version 2) achieves its goals using two primary mechanisms:
+                <ol class="sublist">
+                    <li><strong>Ranking:</strong> Solutions are assigned a rank based on which non-dominated front they belong to (Rank 1 is the best).</li>
+                    <li><strong>Sparsity (Crowding Distance):</strong> Used to measure the distance between neighboring solutions on a front. This measure ensures that a good <strong>spread (diversity)</strong> of solutions is maintained along the Pareto front.</li>
+                </ol>
+            </li>
+            <li>
+                <strong>Benefit for GP:</strong> MOEAs can be used to <strong>control bloat in GP</strong> by including program size as a secondary objective, rewarding simpler solutions.
+            </li>
+        </ul>
+    </div>
+
+    <h1>Other Bio-Inspired Models</h1>
+    <div class="section">
+        <h2>4.1 Cellular Automata (CA)</h2>
+        <ul>
+            <li>
+                <strong>Definition:</strong> CAs are models of <strong>distributed emergent behaviour</strong> operating on a grid (1D, 2D, or more dimensions) over <strong>discrete time steps</strong>. Complex behavior emerges from simple, identical <strong>update rules</strong> applied to a local <strong>neighbourhood</strong>.
+            </li>
+            <li>
+                <strong>Use Cases:</strong> Used for modelling <strong>spatial processes</strong> (like forest fires), physical, and biological processes, and solving computational problems.
+            </li>
+            <li>
+                <strong>Elementary CA (ECA):</strong> These are <strong>1D binary CAs</strong> (state is 0 or 1) that use a neighbourhood of size 3. Since <span class="math">\(2^3=8\)</span> patterns map to a binary output, there are <span class="math">\(2^8=256\)</span> possible update rules, each having a unique number (0 to 255). ECA Rule 110 is famously known to be <strong>Turing complete</strong> (capable of universal computation).
+            </li>
+            <li>
+                <strong>The Game of Life:</strong> A 2D CA that uses <strong>2 states</strong> and a <strong>Moore neighbourhood</strong> (8 neighbours + cell itself). It is defined by 4 rules (under-population, survival, over-crowding, reproduction). It exhibits <strong>surprisingly complex behaviour</strong> and is <strong>Turing complete</strong>. Moving elements like <strong>gliders</strong> and <strong>spaceships</strong> emerge from its rules.
             </li>
         </ul>
     </div>
