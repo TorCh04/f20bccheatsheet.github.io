@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Biologically Inspired Computing - Section A & B Answers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <!-- MathJax for LaTeX rendering -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+</head>
+<body>
+    <h1>Section A & B: Biologically Inspired Computing</h1>
+<div class="top-actions">
+        <a class="home-btn" href="index.html" aria-label="Go to home">Home</a>
+    </div>
+    <div class="section">
+        <h2>Section A</h2>
+        <div class="answer">
+            <div class="question">(1a) Structure of a Typical Evolutionary Algorithm (EA) and Workflow Diagram</div>
+            <p>
+                A generic Evolutionary Algorithm (EA) is a metaheuristic that operates on a population of potential solutions. The algorithm applies the core principles of evolutionary biology: <strong>Inheritance, Mutation, Selection, and Crossover/Recombination</strong>.
+            </p>
+            <ol>
+                <li><strong>Initialization:</strong> Generate a fixed-size population \(P\) of randomly generated candidate solutions and evaluate the fitness of each one using a fitness function \(f(s)\).</li>
+                <li><strong>Repeat until a termination condition is reached:</strong>
+                    <ul>
+                        <li><strong>Selection (Choosing Parents):</strong> Choose a subset of the population to be "parents" using a suitable selection method. Fitter individuals are more likely to be selected.</li>
+                        <li><strong>Variation (Genetic Operators):</strong> Apply crossover/recombination and/or mutation to generate children. Evaluate their fitness.</li>
+                        <li><strong>Population Update (Replacement):</strong> Update the population by retaining some children and removing some incumbents.</li>
+                    </ul>
+                </li>
+                <li><strong>Termination:</strong> Stop when a criterion is met (e.g., max generations, no improvement).</li>
+            </ol>
+            <div class="diagram" style="max-width: 100%; overflow-x: auto;">
+    <!-- Responsive Horizontal SVG Diagram for EA Workflow -->
+    <svg viewBox="0 0 700 180" width="100%" height="180" preserveAspectRatio="xMinYMid meet">
+        <!-- Initialization -->
+        <rect x="10" y="60" width="120" height="40" rx="10" fill="#e3eefa" stroke="#2a7ae2" />
+        <text x="70" y="85" font-size="15" text-anchor="middle" fill="#2a7ae2">Initialization</text>
+        <!-- Arrow to Selection -->
+        <polygon points="130,80 150,80 150,90 130,90" fill="#2a7ae2"/>
+        <!-- Selection -->
+        <rect x="150" y="60" width="120" height="40" rx="10" fill="#e3eefa" stroke="#2a7ae2" />
+        <text x="210" y="85" font-size="15" text-anchor="middle" fill="#2a7ae2">Selection</text>
+        <!-- Arrow to Variation -->
+        <polygon points="270,80 290,80 290,90 270,90" fill="#2a7ae2"/>
+        <!-- Variation -->
+        <rect x="290" y="60" width="120" height="40" rx="10" fill="#e3eefa" stroke="#2a7ae2" />
+        <text x="350" y="85" font-size="15" text-anchor="middle" fill="#2a7ae2">Variation</text>
+        <!-- Arrow to Population Update -->
+        <polygon points="410,80 430,80 430,90 410,90" fill="#2a7ae2"/>
+        <!-- Population Update -->
+        <rect x="430" y="60" width="120" height="40" rx="10" fill="#e3eefa" stroke="#2a7ae2" />
+        <text x="490" y="85" font-size="15" text-anchor="middle" fill="#2a7ae2">Population Update</text>
+        <!-- Arrow to Check Termination -->
+        <polygon points="550,80 570,80 570,90 550,90" fill="#2a7ae2"/>
+        <!-- Check Termination -->
+        <rect x="570" y="60" width="120" height="40" rx="10" fill="#e3eefa" stroke="#2a7ae2" />
+        <text x="630" y="85" font-size="15" text-anchor="middle" fill="#2a7ae2">Check Termination</text>
+        <!-- Loop arrow (from Check Termination back to Selection) -->
+        <path d="M 690 80 Q 710 100 690 120 Q 370 160 50 120 Q 30 100 50 80" fill="none" stroke="#2a7ae2" stroke-width="2"/>
+        <polygon points="50,80 60,75 60,85" fill="#2a7ae2"/>
+        <text x="700" y="110" font-size="12" fill="#2a7ae2" transform="rotate(15 700,110)">Repeat Loop</text>
+    </svg>
+</div>
+<div class="note">Diagram: The workflow is a loop from Initialization → Selection → Variation → Population Update → Check Termination → (repeat or end).</div>
+        </div>
+
+        <div class="answer">
+            <div class="question">(1b) Selective Pressure in Evolutionary Algorithms</div>
+            <p>
+                <strong>Selective pressure</strong> is the tendency to select only the best members of the current generation to propagate into the next. It refers to the level of prioritisation of fitter individuals and is necessary to direct the EA towards an optimum.
+            </p>
+            <ul>
+                <li><strong>Too High Pressure:</strong> Reduces genetic diversity, leading to premature convergence to a local optimum.</li>
+                <li><strong>Too Low Pressure:</strong> Results in little or no evolutionary progress; the algorithm may not converge in a reasonable time.</li>
+            </ul>
+        </div>
+
+        <div class="answer">
+            <div class="question">(1c) EA with Population Size 1 and 100% Mutation</div>
+            <ul>
+                <li><strong>Equivalent Algorithm:</strong> Hill Climbing</li>
+                <li><strong>Behaviour:</strong> Starts with one solution, applies a random mutation, and replaces the solution if the new one is better. Repeats until an optimum is reached.</li>
+                <li><strong>Limitations:</strong> Tends to get stuck in local optima. Unlike traditional GAs, it lacks population diversity and crossover, so it cannot escape local maxima as effectively.</li>
+            </ul>
+        </div>
+
+        <div class="answer">
+            <div class="question">(1d) Perceptron with <span class="math">f(x) = |x|</span> Solving XOR</div>
+            <ul>
+                <li>Given the XOR truth table and <span class="math">y = |w_1 x_1 + w_2 x_2 + w_0|</span>, the weights must satisfy:
+                    <ul>
+                        <li><span class="math">w_0 = 0</span></li>
+                        <li><span class="math">|w_1| = 1, |w_2| = 1, w_1 = -w_2</span></li>
+                    </ul>
+                </li>
+                <li><strong>Valid solutions:</strong>
+                    <ul>
+                        <li><span class="math">w_1 = 1, w_2 = -1, w_0 = 0</span></li>
+                        <li><span class="math">w_1 = -1, w_2 = 1, w_0 = 0</span></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="answer">
+            <div class="question">(2a) Does Deep Learning Always Use Neural Networks?</div>
+            <p>
+                <strong>False.</strong> Deep Learning refers to models with deep structures, but not all are neural networks. Alternatives include Deep Forest and Deep SVMs.
+            </p>
+        </div>
+
+        <div class="answer">
+            <div class="question">(2b) Why Can We Use Backpropagation for CNNs and LSTMs?</div>
+            <p>
+                Backpropagation works because it requires continuous and differentiable activation functions to compute gradients. CNNs and LSTMs use such functions, allowing BP to update parameters efficiently (in LSTMs, this is called Backpropagation Through Time).
+            </p>
+        </div>
+
+        <div class="answer">
+            <div class="question">(2c) Issues with <span class="math">f(x) = x^2</span> as Activation Function</div>
+            <ul>
+                <li><strong>Not monotonic:</strong> <span class="math">x^2</span> decreases for negative <span class="math">x</span> and increases for positive <span class="math">x</span>.</li>
+                <li>This non-monotonicity can cause chaotic training, as increasing a weight may decrease the neuron's influence, making convergence unlikely.</li>
+            </ul>
+        </div>
+
+        <div class="answer">
+            <div class="question">(2d) CNN Calculation: 5x5 Input, 3x3 Average Filter, ReLU, 2x2 Max Pooling</div>
+            <ol>
+                <li><strong>Convolution Output:</strong>
+                    <span class="math">\(\begin{pmatrix} 5/9 & 4/9 & 5/9 \\ 4/9 & 5/9 & 4/9 \\ 5/9 & 4/9 & 5/9 \end{pmatrix}\)</span>
+                    <br>Value marked "?" (center): <span class="math">5/9 \approx 0.556</span>
+                </li>
+                <li><strong>ReLU Output:</strong> Same as above, since all values are positive.</li>
+                <li><strong>Pooling Output:</strong> All values are <span class="math">5/9</span> (max in each 2x2 window).</li>
+                <li><strong>Observations:</strong>
+                    <ul>
+                        <li>ReLU had no effect (all values positive).</li>
+                        <li>Pooling produced a uniform output, indicating the feature is present uniformly across the image.</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Section B</h2>
+        <div class="answer">
+            <div class="question">(3a) PSO and Swarm System Properties</div>
+            <ul>
+                <li><strong>Emergence:</strong> Complex global search from simple local rules (inertia, cognitive, social components).</li>
+                <li><strong>Robustness/Fault-Tolerance:</strong> Distributed computation; knowledge percolates even if some particles fail.</li>
+                <li><strong>Lack of Central Awareness:</strong> Particles only use local/personal and informant information, not global knowledge.</li>
+            </ul>
+        </div>
+
+        <div class="answer">
+            <div class="question">(3b) Symbolic Regression and GP Function Sets</div>
+            <ul>
+                <li><strong>Function Set A vs B:</strong> B is more expressive but increases search space and risk of invalid outputs (e.g., tan, log). A is simpler and may be more evolvable.</li>
+                <li><strong>Function Set C in Koza GP:</strong> Mixing numeric and Boolean operators violates closure. GE is more feasible as it uses grammars to enforce type safety.</li>
+            </ul>
+        </div>
+
+        <div class="answer">
+            <div class="question">(3c) Multiobjective Evolutionary Algorithms (MOEAs)</div>
+            <ul>
+                <li><strong>Importance:</strong> Real-world problems have multiple conflicting objectives; MOEAs find Pareto optimal sets for trade-offs.</li>
+                <li><strong>Complexity:</strong> MOEAs require extra mechanisms (e.g., ranking, sparsity in NSGA-II) to ensure convergence and diversity.</li>
+            </ul>
+        </div>
+
+        <div class="answer">
+            <div class="question">(3d) Elementary Cellular Automata (CA)</div>
+            <ul>
+                <li><strong>Characteristics:</strong> Binary state, 1D, neighborhood size 3 (cell and immediate neighbors).</li>
+                <li><strong>Computational Interest:</strong> Simple rules can lead to complex, even Turing-complete, behavior (e.g., Rule 110).</li>
+            </ul>
+        </div>
+
+        <div class="answer">
+            <div class="question">(4a) PSO for Neural Network Optimization</div>
+            <ul>
+                <li><strong>Increasing Inputs:</strong> Increases the number of weights/biases, making the search space larger and optimization harder.</li>
+                <li><strong>Optimizing Activation Functions:</strong> Map continuous PSO variables to discrete choices via thresholds. Challenge: PSO is for continuous variables; mapping to discrete can cause abrupt changes and complicate optimization.</li>
+            </ul>
+        </div>
+
+        <div class="answer">
+            <div class="question">(4b) Ant Colony Optimization (ACO) Path Selection</div>
+            <ul>
+                <li><strong>Inverse Pheromone Deposition:</strong> Shorter paths get more pheromone, increasing their selection probability.</li>
+                <li><strong>Probabilistic Path Selection:</strong> Ants prefer paths with more pheromone, reinforcing good solutions.</li>
+                <li><strong>Pheromone Evaporation:</strong> Prevents premature convergence and allows exploration by forgetting suboptimal paths.</li>
+            </ul>
+        </div>
+
+        <div class="answer">
+            <div class="question">(4c) DL vs GP: Representation, Optimization, Problem Types</div>
+            <ul>
+                <li><strong>Representation:</strong> DL uses vectors of weights/biases; GP uses explicit program structures (trees, lists, grammars).</li>
+                <li><strong>Optimization:</strong> DL uses gradient descent; GP uses evolutionary algorithms (selection, mutation, crossover).</li>
+                <li><strong>Problems:</strong> DL excels at pattern recognition; GP excels at program synthesis and symbolic regression.</li>
+            </ul>
+        </div>
+
+        <div class="answer">
+            <div class="question">(4d) GP vs GI</div>
+            <ul>
+                <li><strong>GP:</strong> Evolves entire programs from scratch.</li>
+                <li><strong>GI:</strong> Improves existing programs by evolving patches; requires unit tests to ensure correctness.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
